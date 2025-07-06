@@ -19,7 +19,7 @@ body {
 
 .container {
   min-height: 100vh;
-  width: 80%;
+  width: 100%;
   margin: auto;
   background-color: lightblue;
 }
@@ -55,7 +55,7 @@ button, .Btn {
   cursor: pointer;
 }
 
-.wheather {
+.weather {
   color: black;
   font-weight: bold; /* changed from font-style */
   display: flex;
@@ -88,16 +88,17 @@ button, .Btn {
 
   <body>
     <div class="container">
-      <form action="#">
-        <h2>Weather Application</h2>
-        <label for="city">Enter the city</label>
-        <input type="text" id="city" />
-        <button class="Btn" type="submit" onclick="checkWheather()">check out</button>
-      </form>
-      <div class="wheather" id="wheather-climate"></div>
+     <form onsubmit="checkWeather(event)">
+  <h2>Weather Application</h2>
+  <label for="city">Enter the city</label>
+  <input type="text" id="city" />
+  <button class="Btn" type="submit">check out</button>
+</form>
+      <div class="weather" id="weather-climate"></div>
     </div>
     <script>
-      async function checkWheather() {
+      async function checkWeather(event) {
+        event.preventDefault(); 
         const city = document.getElementById("city").value.trim();
         console.log(city);
         const apikey = "7b3622cb24c98bd839ef3c43101f6704";
@@ -129,7 +130,7 @@ button, .Btn {
          }
           
 
-          document.getElementById("wheather-climate").innerHTML = `
+          document.getElementById("weather-climate").innerHTML = `
                 
                 <strong>${data.name}</strong>
                 <p>${data.main.temp}°C</p>
@@ -140,7 +141,7 @@ button, .Btn {
                 `;
         } catch (error) {
           document.getElementById(
-            "wheather-climate"
+            "weather-climate"
           ).innerHTML = `<p style="color:red;">${error.message}</p>`;
         }
       }
