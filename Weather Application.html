@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <style>
+    *{
+        margin: 0;
+        font-family: sans-serif;
+    }
+    .container{
+       height: 100vh;
+       width: auto;
+       background-color:lightblue;
+    }
+    form{
+        border: 2px solid rgb(162, 62, 62);
+        background-color: lightgrey;
+        border-radius: 15px;
+        height: 200px;
+        width: 400px;
+        margin: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    h2,label{
+        text-align: center;
+    }
+    input{
+        height: 20px;
+        width: 70%;
+        margin: 0 auto;
+        border-radius: 15px;
+
+    }
+    button,.Btn{
+        height: 20px;
+        width: 20%;
+        margin: auto;
+    }
+    .wheather{
+        color: black;
+        font-style: bold;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+    }
+</style>
+  <body>
+    <div class="container">
+      <form action="#">
+        <h2>Weather Application</h2>
+        <label for="city">Enter the city</label>
+        <input type="text" id="city" />
+        <button class="Btn" type="submit" onclick="checkWheather()">check out</button>
+      </form>
+      <div class="wheather" id="wheather-climate"></div>
+    </div>
+    <script>
+      async function checkWheather() {
+        const city = document.getElementById("city").value.trim();
+        console.log(city);
+        const apikey = "7b3622cb24c98bd839ef3c43101f6704";
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`;
+
+        try {
+          if (!city) {
+            throw new Error("Please enter the city !");
+          }
+
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("City is not found");
+          }
+          let data = await response.json();
+          console.log(data);
+
+          let weather_img='';
+
+          if(data.weather[0].description.includes("cloud")){
+            weather_img="download.jpg";
+          }
+          else if (data.weather[0].description.includes("sun")) {
+            weather_img  = "Sunny.jpg";
+           } else if (data.weather[0].description.includes("rain")) {
+             weather_img = "rain.jpg";
+         } else {
+             weather_img = "default.jpg";
+         }
+          
+
+          document.getElementById("wheather-climate").innerHTML = `
+                
+                <strong>${data.name}</strong>
+                <p>${data.main.temp}°C</p>
+                <p>${data.wind.speed}m/s</p>
+                <p>${data.weather[0].description}</p>
+                <img src="${weather_img}" alt="Weather Image" width="100">
+
+                `;
+        } catch (error) {
+          document.getElementById(
+            "wheather-climate"
+          ).innerHTML = `<p style="color:red;">${error.message}</p>`;
+        }
+      }
+    </script>
+  </body>
+</html>
