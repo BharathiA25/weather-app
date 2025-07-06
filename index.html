@@ -5,81 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+<style>
+  * {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
 
-  <style>
-    *{
-        margin: 0;
-        font-family: sans-serif;
-        font-size: 18px;
-        padding: 20px;
-    }
-    .container{
-       height: 100vh;
-       width: 80%;
-      margin:auto;
-       background-color:lightblue;
-    }
-    form{
-        border: 2px solid rgb(162, 62, 62);
-        background-color: lightgrey;
-        border-radius: 15px;
-        height: 200px;
-        width: 400px;
-        margin: auto;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-    h2,label{
-        text-align: center;
-    }
-    input{
-        height: 20px;
-        width: 70%;
-        margin: 0 auto;
-        border-radius: 15px;
+body {
+  font-size: 18px;
+  padding: 20px;
+}
 
-    }
-    button,.Btn{
-        height: 20px;
-        width: 20%;
-        margin: auto;
-    }
-    .wheather{
-        color: black;
-        font-style: bold;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-    }
+.container {
+  min-height: 100vh;
+  width: 80%;
+  margin: auto;
+  background-color: lightblue;
+}
 
-/* Media query for small screens (like mobiles) */
+form {
+  border: 2px solid rgb(162, 62, 62);
+  background-color: lightgrey;
+  border-radius: 15px;
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h2, label {
+  text-align: center;
+}
+
+input {
+  height: 30px;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+
+button, .Btn {
+  height: 30px;
+  width: 40%;
+  margin: auto;
+}
+
+.wheather {
+  color: black;
+  font-weight: bold; /* changed from font-style */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Media query for small screens */
 @media (max-width: 600px) {
   body {
     font-size: 16px;
-  
-  }
-
-  /* Example: Make a container full width on mobile */
-  .container {
-    width: 100%;
     padding: 10px;
   }
+
+  .container {
+    width: 100%;
+  }
+
   form {
-    width: 90%;  /* let form become smaller than screen width */
-    height: auto; /* optional: let height adjust if needed */
+    width: 90%;
   }
 
   input, button, .Btn {
-    width: 80%; /* make inputs and button wider */
+    width: 90%;
   }
-
-  /* Adjust other elements as needed */
 }
 </style>
+
   <body>
     <div class="container">
       <form action="#">
